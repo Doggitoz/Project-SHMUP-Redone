@@ -49,6 +49,8 @@ public class Hero : MonoBehaviour
 
     [Header("Projectile Settings")]
     public float projectileSpeed = 40;
+    public AudioClip projectSound;
+    private AudioSource audioSource;
 
     [Space(10)]
 
@@ -92,6 +94,7 @@ public class Hero : MonoBehaviour
     {
         gm = GameManager.GM; //find the game manager
         pool = ObjectPool.POOL;
+        audioSource = GetComponent<AudioSource>();
     }//end Start()
 
 
@@ -115,8 +118,13 @@ public class Hero : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("a");
             FireProjectile();
+
+            if (audioSource != null)
+            {
+                Debug.Log("m");
+                audioSource.PlayOneShot(projectSound);
+            }
         }
 
     }//end Update()
